@@ -11,15 +11,14 @@ static const int user_bh            = 42;
 static const int user_bv            = 35;
 static const char *fonts[]          = { "TeX Gyre Bonum Math:size=16" };
 static const char dmenufont[]       = "TeX Gyre Bonum Math:size=16";
-static const char col_gray1[]       = "#28303c";/*"#1e1e1e";   #232933 old dwm background window name color and now is col_cyan */
+static const char col_gray1[]       = "#28303c"; /* dwm old col_cyan, used for dmenu only */
 static const char col_gray2[]       = "#1E242D"; /* unselected window border */
-static const char col_gray3[]       = "#A8AEB5";/*"#A7BAC8";  unselected tag */
+static const char col_gray3[]       = "#A8AEB5"; /* unselected tag */
 static const char col_gray4[]       = "#e9f6fe"; /* selected tag */
-static const char col_gray5[]       = "#e9f6fe";  /* selected window border */
-static const char col_cyan[]        = "#1E242D";  /* actual is lblackout; dwm default color; old: #3B4252 (lighest nordic);oldest color: #2E3440 (nordic)*/
+static const char col_gray5[]       = "#e9f6fe"; /* selected window border */
+static const char col_cyan[]        = "#1E242D"; /* dwm default color */
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-      /*[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },*/
 	[SchemeNorm] = { col_gray3, col_cyan,  col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_gray5 },
 };
@@ -35,7 +34,6 @@ static const Rule rules[] = {
 	/* class              instance    title       tags mask     isfloating   monitor */
 	 { "Gimp",            NULL,       NULL,       0,            1,           -1 },
 	 { "thunderbird",     NULL,       NULL,       1 << 5,       0,           -1 },
-	 /*{ "feh",             NULL,       NULL,       ~0,           1,           -1 },*/
 	 { "feh",             NULL,       NULL,       0,           1,           -1 },
 };
 
@@ -66,7 +64,6 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_cyan, "-nf", col_gray3, "-sb", col_gray1, "-sf", col_gray4, NULL };
-/*static const char *dmenumountcmd[]   = { "bash", "dmenumount.sh", NULL };*/
 static const char *poweroffcmd[]= {"powermenu.sh", NULL};
 static const char *gnomecmd[]= {"launcher_.sh", NULL};
 static const char *leftclickstatuscmd[]= {"/usr/bin/run_with_left_mouse_click.sh", NULL};
@@ -97,7 +94,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      			        setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,     			        setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, 			        zoom,           {0} },
-      /*{ MODKEY,                   XK_Tab,                     view,           {0} }*/
 	{ MODKEY,                       XK_0,    			        view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      			        killclient,     {0} },
 	{ MODKEY,                       XK_t,      			        setlayout,      {.v = &layouts[0]} },
@@ -106,7 +102,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,                       		setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,  			        setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  			        togglefloating, {0} },
-	/* { MODKEY,                    XK_0,      			        view,           {.ui = ~0 } }*/
 	{ MODKEY,                       XK_Tab,                     		view,           {.ui = ~0 } },
 	{ MODKEY,                       XK_Tab,                                 setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_Tab,                     		view,           {.ui = ~0 } },
@@ -122,7 +117,6 @@ static Key keys[] = {
 	{ MODKEY, 			XK_r, 	   			        spawn, 	   	{.v = roficmd } },
 	{ 0,                            XF86XK_MonBrightnessUp,   		spawn, 		{.v = brightness_up } },
 	{ 0,                            XF86XK_MonBrightnessDown, 		spawn, 		{.v = brightness_down } },
-	/*{ MODKEY|ShiftMask,           XK_m, 				        spawn,          {.v = dmenumountcmd } },*/
 	{ MODKEY|ShiftMask,	            XK_p,	 			spawn,          {.v = poweroffcmd } },
 	{ MODKEY|ShiftMask,	            XK_r,	 			spawn,          {.v = gnomecmd } },
 	{ MODKEY,                       XK_o,      			        winview,        {0} },
