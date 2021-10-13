@@ -1,0 +1,74 @@
+#!/usr/bin/env sh
+
+## Author  : Aditya Shakya
+## Mail    : adi1090x@gmail.com
+## Github  : @adi1090x
+## Twitter : @adi1090x
+
+style="$(/opt/rofi/applets/applets/style.sh)"
+
+dir="/opt/rofi/applets/applets/configs/$style"
+rofi_command="rofi -theme $dir/battery.rasi"
+
+## Get data
+BATTERY="$(acpi | awk -F ' ' '{print $4}' | tr -d \%,)"
+CHARGE="$(acpi | awk -F ' ' '{print $3}' | tr -d \,)"
+
+active=""
+urgent=""
+
+if [[ $CHARGE = *"Charging"* ]]; then
+    active="-a 1"
+    ICON_CHRG=""
+    MSG=$CHARGE
+elif [[ $CHARGE = *"Full"* ]]; then
+    active="-u 1"
+    ICON_CHRG=""
+    MSG=$CHARGE
+else
+    urgent="-u 1"
+    ICON_CHRG=""
+    MSG=$CHARGE
+fi
+
+if (( 0<=$BATTERY && $BATTERY<=5 ))
+then
+    BATTERY="◻◻◻◻◻◻◻◻◻◻ %s"
+elif (( 5<$BATTERY && $BATTERY<=10 ))
+then
+    BATTERY="◼◻◻◻◻◻◻◻◻◻ %s" "$BATTERY%"
+elif (( 10<$BATTERY && $BATTERY<=20 ))
+then
+    BATTERY="◼◼◻◻◻◻◻◻◻◻ %s" "$BATTERY%"
+elif (( 20<$BATTERY && $BATTERY<=30 ))
+then
+    BATTERY="◼◼◼◻◻◻◻◻◻◻ %s" "$BATTERY%"
+elif (( 30<$BATTERY && $BATTERY<=40 ))
+then
+    BATTERY="◼◼◼◼◻◻◻◻◻◻ %s" "$BATTERY%"
+elif (( 40<$BATTERY && $BATTERY<=50 ))
+then
+    BATTERY="◼◼◼◼◼◻◻◻◻◻ %s" "$BATTERY%"
+elif (( 50<$BATTERY && $BATTERY<=60 ))
+then
+    BATTERY="◼◼◼◼◼◼◻◻◻◻ %s" "$BATTERY%"
+elif (( 60<$BATTERY && $BATTERY<=70 ))
+then
+    BATTERY="◼◼◼◼◼◼◼◻◻◻ %s" "$BATTERY%"
+elif (( 70<$BATTERY && $BATTERY<=80 ))
+then
+    BATTERY="◼◼◼◼◼◼◼◼◻◻ %s" "$BATTERY%"
+elif (( 80<$BATTERY && $BATTERY<=90 ))
+then
+    BATTERY="◼◼◼◼◼◼◼◼◼◻ %s" "$BATTERY%"
+else
+    BATTERY="◼◼◼◼◼◼◼◼◼◼ %s" "$BATTERY%"
+fi
+
+## Icons
+ICON_PMGR=""
+
+options="$ICON_DISCHRG"
+
+## Main
+chosen="$(echo -e "$options" | $rofi_command -p "$BATTERY%" -dmenu $active $urgent -selected-row 0)"

@@ -1,0 +1,22 @@
+/************************************************
+ * ROFI Color theme
+ * Upload by: Daguhh
+ * Theme : Magnolia <https://www.deviantart.com/zb652/art/Magnolia-868230039>
+ * Creator : ZB652 <https://www.deviantart.com/zb652>
+ ***********************************************/
+
+
+* {
+    text:			 #E9F6FE;
+    border:		         #E9F6FE;	
+    foreground:                  #2E3440;
+    background:                  #1E242D;
+    foreground-normal:           @foreground;
+    background-normal:           @background;
+    foreground-active:           #E9F6FE;
+    background-active:           #2E3440; /*dia de hoje destacado, mas não vale a pena*/
+    foreground-urgent:           #E9F6FE;
+    background-urgent:           #2E3440;
+    foreground-select:           #2E3440;
+    background-select:           #444C5F;
+}
