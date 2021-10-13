@@ -4,11 +4,11 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const float scalepreview     = 2.4;        /* Tag preview scaling */
+static const float scalepreview     = 2.4;      /* Tag preview scaling */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 42;
-static const int user_bv            = 35;
+static const int user_bh            = 42;	/* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bv            = 35;	/* 0 means that dwm will calculate bar padding, >= 1 means dwm will user_bh as bar padding */
 static const char *fonts[]          = { "TeX Gyre Bonum Math:size=16" };
 static const char dmenufont[]       = "TeX Gyre Bonum Math:size=16";
 static const char col_gray1[]       = "#28303c"; /* dwm old col_cyan, used for dmenu only */
