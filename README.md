@@ -1,2 +1,2 @@
-# My-dwm-build
-This repository contains the patchs, source code and binaries of my dwm build
+# My dwm build
+This repository contains the patchs, source code of my dwm build.
